@@ -291,7 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      // For now, just show success (Formspree will be wired later)
       contactForm.style.display = 'none';
       document.getElementById('contactSuccess').style.display = 'block';
 
@@ -300,6 +299,120 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('contactSuccess').style.display = 'none';
         contactForm.reset();
       }, 4000);
+    });
+  }
+
+  /* ============================================================
+     BOOKING WIZARD
+     ============================================================ */
+  const bookingStep1 = document.getElementById('bookingStep1');
+  const bookingStep2 = document.getElementById('bookingStep2');
+  const bookingStep3 = document.getElementById('bookingStep3');
+  const bookingSuccess = document.getElementById('bookingSuccess');
+
+  if (bookingStep1) {
+    const sessionRadios = document.querySelectorAll('input[name="sessionType"]');
+    const toStep2Btn = document.getElementById('toStep2');
+    const toStep3Btn = document.getElementById('toStep3');
+    const backToStep1Btn = document.getElementById('backToStep1');
+    const backToStep2Btn = document.getElementById('backToStep2');
+    const bookingForm = document.getElementById('bookingForm');
+
+    const stepIndicators = document.querySelectorAll('.booking-step');
+
+    function setActiveStep(num) {
+      stepIndicators.forEach(s => {
+        const sNum = parseInt(s.dataset.step, 10);
+        s.classList.remove('active', 'completed');
+        if (sNum === num) s.classList.add('active');
+        else if (sNum < num) s.classList.add('completed');
+      });
+    }
+
+    // Step 1: enable continue when a session type is selected
+    sessionRadios.forEach(r => {
+      r.addEventListener('change', () => {
+        toStep2Btn.disabled = false;
+      });
+    });
+
+    toStep2Btn.addEventListener('click', () => {
+      bookingStep1.style.display = 'none';
+      bookingStep2.style.display = '';
+      setActiveStep(2);
+      window.scrollTo({ top: bookingStep2.offsetTop - 120, behavior: 'smooth' });
+    });
+
+    // Step 2: enable continue when date & time selected
+    const bookingDate = document.getElementById('bookingDate');
+    const bookingTime = document.getElementById('bookingTime');
+    const bookingDuration = document.getElementById('bookingDuration');
+
+    // Set min date to today
+    const today = new Date().toISOString().split('T')[0];
+    if (bookingDate) bookingDate.min = today;
+
+    function checkStep2() {
+      toStep3Btn.disabled = !(bookingDate.value && bookingTime.value && bookingDuration.value);
+    }
+    [bookingDate, bookingTime, bookingDuration].forEach(el => {
+      if (el) el.addEventListener('change', checkStep2);
+    });
+
+    backToStep1Btn.addEventListener('click', () => {
+      bookingStep2.style.display = 'none';
+      bookingStep1.style.display = '';
+      setActiveStep(1);
+    });
+
+    toStep3Btn.addEventListener('click', () => {
+      bookingStep2.style.display = 'none';
+      bookingStep3.style.display = '';
+      setActiveStep(3);
+      populateSummary();
+      window.scrollTo({ top: bookingStep3.offsetTop - 120, behavior: 'smooth' });
+    });
+
+    backToStep2Btn.addEventListener('click', () => {
+      bookingStep3.style.display = 'none';
+      bookingStep2.style.display = '';
+      setActiveStep(2);
+    });
+
+    function populateSummary() {
+      const sessionType = document.querySelector('input[name="sessionType"]:checked');
+      document.getElementById('summarySession').textContent = sessionType ? sessionType.parentElement.querySelector('h4').textContent : '—';
+      document.getElementById('summaryDate').textContent = bookingDate.value || '—';
+      document.getElementById('summaryTime').textContent = bookingTime.options[bookingTime.selectedIndex]?.text || '—';
+      document.getElementById('summaryDuration').textContent = bookingDuration.options[bookingDuration.selectedIndex]?.text || '—';
+      document.getElementById('summaryLocation').textContent = document.getElementById('bookingLocation').value || 'To be discussed';
+    }
+
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      bookingStep3.style.display = 'none';
+      bookingSuccess.style.display = '';
+      // Hide step indicators
+      document.querySelector('.booking-steps').style.display = 'none';
+      window.scrollTo({ top: bookingSuccess.offsetTop - 120, behavior: 'smooth' });
+    });
+  }
+
+  /* ============================================================
+     QUOTE FORM
+     ============================================================ */
+  const quoteForm = document.getElementById('quoteForm');
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      quoteForm.style.display = 'none';
+      document.getElementById('quoteSuccess').style.display = 'block';
+
+      setTimeout(() => {
+        quoteForm.style.display = 'block';
+        document.getElementById('quoteSuccess').style.display = 'none';
+        quoteForm.reset();
+      }, 5000);
     });
   }
 

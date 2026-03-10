@@ -814,6 +814,388 @@ button, input, textarea, select { font-family: inherit; }
   text-align: center;
   background: var(--bg-secondary);
 }
+
+/* ============================================================
+   BOOKING PAGE
+   ============================================================ */
+.booking-hero {
+  padding: 140px 0 60px;
+  text-align: center;
+  background: var(--bg-secondary);
+}
+.booking-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+.booking-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.4;
+  transition: opacity var(--transition);
+}
+.booking-step.active {
+  opacity: 1;
+}
+.booking-step.completed {
+  opacity: 0.7;
+}
+.step-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--gold);
+  transition: all var(--transition);
+}
+.booking-step.active .step-number {
+  background: var(--gold);
+  color: var(--bg-primary);
+}
+.booking-step.completed .step-number {
+  background: var(--gold-dark);
+  color: var(--bg-primary);
+  border-color: var(--gold-dark);
+}
+.step-label {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.step-connector {
+  width: 40px;
+  height: 2px;
+  background: rgba(212,168,83,0.2);
+  margin: 0 16px;
+}
+.booking-panel {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 50px 40px;
+  border: 1px solid rgba(212,168,83,0.1);
+}
+.booking-panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Session type cards */
+.session-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+.session-card {
+  cursor: pointer;
+}
+.session-card input {
+  display: none;
+}
+.session-card-inner {
+  background: var(--bg-secondary);
+  border: 2px solid rgba(212,168,83,0.1);
+  border-radius: var(--radius-lg);
+  padding: 24px 16px;
+  text-align: center;
+  transition: all var(--transition);
+}
+.session-card-inner svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+  margin-bottom: 12px;
+}
+.session-card-inner h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.session-card-inner p {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.session-card input:checked + .session-card-inner {
+  border-color: var(--gold);
+  background: rgba(212,168,83,0.08);
+  box-shadow: 0 0 20px rgba(212,168,83,0.15);
+}
+.session-card:hover .session-card-inner {
+  border-color: rgba(212,168,83,0.4);
+}
+
+/* Date & time grid */
+.datetime-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Booking summary */
+.booking-summary {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 2rem;
+  border: 1px solid rgba(212,168,83,0.1);
+}
+.booking-summary h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(212,168,83,0.06);
+}
+.summary-row span:first-child {
+  color: var(--text-muted);
+}
+.summary-row span:last-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ============================================================
+   QUOTE PAGE
+   ============================================================ */
+.quote-hero {
+  padding: 140px 0 60px;
+  text-align: center;
+  background: var(--bg-secondary);
+}
+.quote-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  align-items: start;
+}
+.quote-info-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  border: 1px solid rgba(212,168,83,0.1);
+}
+.quote-info-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.quote-feature {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 1.4rem;
+  align-items: flex-start;
+}
+.quote-feature-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: rgba(212,168,83,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quote-feature-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 2;
+}
+.quote-feature h4 {
+  font-size: 0.9rem;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+.quote-feature p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.quote-form-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  border: 1px solid rgba(212,168,83,0.1);
+}
+.quote-form-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+/* Checkboxes */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  transition: background var(--transition);
+}
+.checkbox-label:hover {
+  background: rgba(212,168,83,0.05);
+}
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gold);
+}
+
+/* ============================================================
+   LINKTREE PAGE
+   ============================================================ */
+.linktree-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1511 50%, #0a0a0a 100%);
+}
+.linktree-container {
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+}
+.linktree-header {
+  margin-bottom: 2rem;
+}
+.linktree-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+}
+.linktree-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.linktree-tagline {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.linktree-bio {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.linktree-section-label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 1.5rem 0 0.8rem;
+}
+
+.linktree-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.linktree-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border: 1px solid rgba(212,168,83,0.1);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.linktree-link:hover {
+  border-color: var(--gold);
+  background: rgba(212,168,83,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(212,168,83,0.15);
+  color: var(--gold);
+}
+.linktree-link svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+  min-width: 20px;
+}
+.linktree-link.linktree-social svg {
+  fill: var(--gold);
+  stroke: none;
+}
+.linktree-link.linktree-extra svg {
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+}
+.linktree-link-highlight {
+  border-color: var(--gold);
+  background: rgba(212,168,83,0.06);
+}
+.linktree-link-highlight:hover {
+  background: var(--gold);
+  color: var(--bg-primary);
+}
+.linktree-link-highlight:hover svg {
+  stroke: var(--bg-primary);
+}
+
+.linktree-footer {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(212,168,83,0.1);
+}
+.linktree-footer p {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+.linktree-credit {
+  font-style: italic;
+  margin-top: 0.3rem;
+}
 .admin-container {
   max-width: 700px;
   margin: 0 auto;
@@ -1017,6 +1399,9 @@ button, input, textarea, select { font-family: inherit; }
   .contact-grid {
     grid-template-columns: 1fr;
   }
+  .quote-grid {
+    grid-template-columns: 1fr;
+  }
   .portfolio-grid {
     columns: 2;
   }
@@ -1040,6 +1425,12 @@ button, input, textarea, select { font-family: inherit; }
   .reviews-grid { grid-template-columns: 1fr; }
   .floating-reviews { display: none; }
   .review-form { padding: 30px 20px; }
+  .datetime-grid { grid-template-columns: 1fr; }
+  .booking-panel { padding: 30px 20px; }
+  .session-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .checkbox-grid { grid-template-columns: 1fr; }
+  .step-label { display: none; }
+  .step-connector { width: 24px; margin: 0 8px; }
 }
 
 @media (max-width: 540px) {
