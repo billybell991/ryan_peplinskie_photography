@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Ryan Peplinskie Photography</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="20" fill="none" stroke="#d4a853" stroke-width="1.5"/>
+          <circle cx="22" cy="22" r="6" fill="none" stroke="#d4a853" stroke-width="1"/>
+          <line x1="22" y1="2" x2="22" y2="16" stroke="#d4a853" stroke-width="1" opacity="0.6"/>
+          <line x1="22" y1="28" x2="22" y2="42" stroke="#d4a853" stroke-width="1" opacity="0.6"/>
+          <line x1="2" y1="22" x2="16" y2="22" stroke="#d4a853" stroke-width="1" opacity="0.6"/>
+          <line x1="28" y1="22" x2="42" y2="22" stroke="#d4a853" stroke-width="1" opacity="0.6"/>
+          <circle cx="22" cy="6" r="1.5" fill="#d4a853" opacity="0.8"/>
+          <circle cx="22" cy="38" r="1.5" fill="#d4a853" opacity="0.8"/>
+          <circle cx="6" cy="22" r="1.5" fill="#d4a853" opacity="0.8"/>
+          <circle cx="38" cy="22" r="1.5" fill="#d4a853" opacity="0.8"/>
+        </svg>
+        <span class="logo-text">
+          <span class="logo-pep">Ryan Peplinskie Photography</span>
+          <span class="logo-full">Admin Panel</span>
+        </span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== ADMIN HERO ========== -->
+  <section class="admin-hero">
+    <h1 class="section-title"><span class="gold">Admin</span> Panel</h1>
+    <hr class="divider">
+    <p class="section-subtitle">Upload and manage your portfolio photos.</p>
+  </section>
+
+  <!-- ========== ADMIN CONTENT ========== -->
+  <section class="section-padding" style="padding-top: 0;">
+    <div class="admin-container">
+
+      <!-- Login Gate -->
+      <div class="admin-login" id="adminLogin">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 1.5rem; text-align: center;">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:2;vertical-align:middle;margin-right:8px;">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+          </svg>
+          Photographer Access
+        </h3>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminPassword" placeholder="Enter admin password" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-filled" style="width:100%">Unlock</button>
+          <p id="loginError" style="color:#e74c3c; text-align:center; margin-top:1rem; font-size:0.85rem; display:none;">Incorrect password. Please try again.</p>
+        </form>
+      </div>
+
+      <!-- Admin Panel (hidden until login) -->
+      <div class="admin-panel" id="adminPanel">
+
+        <!-- Upload Section -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 1.5rem;">
+          Upload <span class="gold">Photos</span>
+        </h3>
+
+        <div class="form-group">
+          <label for="uploadCategory">Category</label>
+          <select id="uploadCategory">
+            <option value="wedding">Wedding</option>
+            <option value="engagement">Engagement</option>
+            <option value="portrait">Portrait</option>
+            <option value="family">Family</option>
+            <option value="newborn">Newborn / Baby</option>
+            <option value="nature">Nature</option>
+            <option value="event">Event</option>
+          </select>
+        </div>
+
+        <div class="upload-area" id="uploadArea">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <p>Drag &amp; drop photos here, or <span class="browse-text">browse</span></p>
+          <p style="font-size:0.75rem; color:var(--text-dim); margin-top:8px;">Supports JPG, PNG, WebP &bull; Max 10MB each</p>
+          <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp" style="display:none">
+        </div>
+
+        <div class="upload-preview" id="uploadPreview"></div>
+
+        <button class="btn btn-filled" id="uploadBtn" style="width:100%; margin-top:20px;" disabled>
+          Upload to Portfolio
+        </button>
+
+        <div class="form-success" id="uploadSuccess">
+          <p>&#10003; Photos uploaded successfully! They'll appear in your portfolio.</p>
+        </div>
+
+        <!-- Manage Existing -->
+        <div style="margin-top:50px; padding-top:30px; border-top:1px solid rgba(212,168,83,0.1);">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 1.5rem;">
+            Current <span class="gold">Portfolio</span>
+          </h3>
+          <div class="upload-preview" id="currentPhotos" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <span class="logo-pep">Ryan Peplinskie Photography</span>
+      </div>
+      <p class="footer-bottom">&copy; 2026 Ryan Peplinskie Photography. Admin panel.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
